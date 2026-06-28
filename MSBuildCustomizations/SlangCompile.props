@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <ItemDefinitionGroup>
+    <SlangCompileTask>
+      <EnableDebugFlag>false</EnableDebugFlag>
+      <EnableReflection>false</EnableReflection>
+      <SpirvProfile>spirv_1_6</SpirvProfile>
+      <OutputFolder
+                Condition="'%(SlangCompileTask.OutputFolder)' == ''"
+            >$(SolutionDir)bin</OutputFolder>
+      <OutputFilename
+                Condition="'%(SlangCompileTask.OutputFilename)' == ''"
+            >%(SlangCompileTask.OutputFolder)\%(Identity).spv</OutputFilename>
+      <Entrypoints />
+      <AdditionalOptions />
+
+      <CommandLineTemplate
+            >$(VULKAN_SDK)\Bin\slangc.exe %(FullPath) -target spirv -emit-spirv-directly -fvk-use-entrypoint-name -fvk-use-gl-layout [AllOptions] [AdditionalOptions]</CommandLineTemplate>
+      <ReflectedCommandLineTemplate
+            >$(VULKAN_SDK)\Bin\slangc.exe %(FullPath) -target spirv -emit-spirv-directly -fvk-use-entrypoint-name -fvk-use-gl-layout -reflection-json %(SlangCompileTask.OutputFilename).reflect [AllOptions] [AdditionalOptions]</ReflectedCommandLineTemplate>
+    </SlangCompileTask>
+  </ItemDefinitionGroup>
+</Project>

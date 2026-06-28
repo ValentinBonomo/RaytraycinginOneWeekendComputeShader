@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ProjectSchemaDefinitions
+    xmlns="http://schemas.microsoft.com/build/2009/properties"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+>
+  <Rule
+        Name="SlangCompileTask"
+        PageTemplate="tool"
+        DisplayName="Slang Compiler"
+        SwitchPrefix=""
+        Order="200"
+    >
+    <Rule.Categories>
+      <Category Name="General" DisplayName="General" />
+      <Category Name="Command Line" Subtype="CommandLine">
+        <Category.DisplayName>
+          <sys:String>Command Line</sys:String>
+        </Category.DisplayName>
+      </Category>
+    </Rule.Categories>
+
+    <Rule.DataSource>
+      <DataSource Persistence="ProjectFile" ItemType="SlangCompileTask" />
+    </Rule.DataSource>
+
+    <StringProperty Name="Inputs" Category="Command Line" IsRequired="true">
+      <StringProperty.DataSource>
+        <DataSource
+                    Persistence="ProjectFile"
+                    ItemType="SlangCompileTask"
+                    SourceType="Item"
+                />
+      </StringProperty.DataSource>
+    </StringProperty>
+    <StringProperty
+            Name="CommandLineTemplate"
+            DisplayName="Command Line"
+            Visible="False"
+            IncludeInCommandLine="False"
+        />
+    <StringProperty
+            Name="AdditionalOptions"
+            Subtype="AdditionalOptions"
+            Category="Command Line"
+        >
+      <StringProperty.DisplayName>
+        <sys:String>Additional Options</sys:String>
+      </StringProperty.DisplayName>
+      <StringProperty.Description>
+        <sys:String>Additional Options</sys:String>
+      </StringProperty.Description>
+    </StringProperty>
+
+    <StringProperty
+            Name="OutputFolder"
+            DisplayName="Output folder"
+            Description="Where to put the compiled shader"
+            IncludeInCommandLine="False"
+            Category="General"
+        />
+
+    <StringProperty
+            Name="OutputFilename"
+            DisplayName="Output filename"
+            Description="The compiled shader's output file name"
+            Category="General"
+            Switch="-o [value]"
+        />
+
+    <BoolProperty
+            Name="EnableDebugFlag"
+            DisplayName="Enable debug information"
+            Description="Enables debug information (-g) for Slang"
+            Category="General"
+            Switch="-g"
+        />
+
+    <BoolProperty
+            Name="EnableReflection"
+            DisplayName="Enable reflection"
+            Description="Enables reflection information (-reflection-json) for Slang"
+            IncludeInCommandLine="False"
+            Category="General"
+        />
+
+    <StringProperty
+            Name="SpirvProfile"
+            DisplayName="SPIR-V profile"
+            Description="Specifies the SPIR-V profile to use"
+            Category="General"
+            Switch="-profile [value]"
+        />
+
+    <StringListProperty
+            Name="Entrypoints"
+            DisplayName="Entry points"
+            Description="Specifies a semicolon-separated list of entry points for this shader"
+            Category="General"
+            Switch="-entry [value]"
+        />
+  </Rule>
+
+  <ItemType Name="SlangCompileTask" DisplayName="Slang Compiler" />
+  <ContentType
+        Name="SlangCompileTask"
+        DisplayName="Slang Compiler"
+        ItemType="SlangCompileTask"
+    />
+  <FileExtension Name=".slang" ContentType="SlangCompileTask" />
+</ProjectSchemaDefinitions>

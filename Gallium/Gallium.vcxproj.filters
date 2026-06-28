@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files\gallium">
+      <UniqueIdentifier>{8d5318a1-53c4-47d2-ad1e-493e94c9b25c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gallium\platform">
+      <UniqueIdentifier>{eb0dfaed-ddbb-45fc-bd78-d7f5eb880fa8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\platform">
+      <UniqueIdentifier>{5f401390-5ce7-433a-b911-9532cc37104a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\platform\win32">
+      <UniqueIdentifier>{80ce200b-0b9f-4200-b8fc-47fda0a0cba3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gallium\gpu">
+      <UniqueIdentifier>{4b1849f1-1665-4fe1-bb3f-a3f90ec45879}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gpu">
+      <UniqueIdentifier>{7d42f408-60f9-4067-8944-d3e588872edd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gpu\vulkan">
+      <UniqueIdentifier>{c82e320b-f3ec-41b9-a0c5-040641f01957}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\platform\win32\platform.cpp">
+      <Filter>Source Files\platform\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gpu\vulkan\enums.cpp">
+      <Filter>Source Files\gpu\vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gpu\vulkan\image.cpp">
+      <Filter>Source Files\gpu\vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gpu\vulkan\device.cpp">
+      <Filter>Source Files\gpu\vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gpu\vulkan\commandbuffer.cpp">
+      <Filter>Source Files\gpu\vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gpu\vulkan\shadermodule.cpp">
+      <Filter>Source Files\gpu\vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gpu\vulkan\buffer.cpp">
+      <Filter>Source Files\gpu\vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gpu\vulkan\graphicspipeline.cpp">
+      <Filter>Source Files\gpu\vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="src\platform\vfs_common.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gpu\vulkan\shadermodule_reflection.cpp">
+      <Filter>Source Files\gpu\vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gpu\vulkan\descriptorregistry.cpp">
+      <Filter>Source Files\gpu\vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="src\platform\win32\input.cpp">
+      <Filter>Source Files\platform\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gpu\vulkan\computepipeline.cpp">
+      <Filter>Source Files\gpu\vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="src\platform\win32\timer.cpp">
+      <Filter>Source Files\platform\win32</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\gallium\platform\platform.h">
+      <Filter>Header Files\gallium\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="src\platform\win32\platform_impl.h">
+      <Filter>Source Files\platform\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gallium\platform\timer.h">
+      <Filter>Header Files\gallium\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gallium\gpu\device.h">
+      <Filter>Header Files\gallium\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gpu\vulkan\device_impl.h">
+      <Filter>Source Files\gpu\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gallium\gpu\image.h">
+      <Filter>Header Files\gallium\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gallium\gpu\enums.h">
+      <Filter>Header Files\gallium\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gpu\vulkan\enums_impl.h">
+      <Filter>Source Files\gpu\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gpu\vulkan\image_impl.h">
+      <Filter>Source Files\gpu\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gallium\gpu\commandbuffer.h">
+      <Filter>Header Files\gallium\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gpu\vulkan\commandbuffer_impl.h">
+      <Filter>Source Files\gpu\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gallium\gpu\shadermodule.h">
+      <Filter>Header Files\gallium\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gpu\vulkan\shadermodule_impl.h">
+      <Filter>Source Files\gpu\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gallium\gpu\buffer.h">
+      <Filter>Header Files\gallium\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gpu\vulkan\buffer_impl.h">
+      <Filter>Source Files\gpu\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gallium\gpu\graphicspipeline.h">
+      <Filter>Header Files\gallium\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gallium\gpu\pipeline.h">
+      <Filter>Header Files\gallium\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gpu\vulkan\graphicspipeline_impl.h">
+      <Filter>Source Files\gpu\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gallium\platform\vfs.h">
+      <Filter>Header Files\gallium\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gallium\gpu\shadermodule_reflection.h">
+      <Filter>Header Files\gallium\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gpu\vulkan\shadermodule_reflection_impl.h">
+      <Filter>Source Files\gpu\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gallium\gpu\descriptorregistry.h">
+      <Filter>Header Files\gallium\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gpu\vulkan\descriptorregistry_impl.h">
+      <Filter>Source Files\gpu\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gallium\platform\input.h">
+      <Filter>Header Files\gallium\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="src\platform\win32\input_impl.h">
+      <Filter>Source Files\platform\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gallium\gpu\computepipeline.h">
+      <Filter>Header Files\gallium\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gpu\vulkan\computepipeline_impl.h">
+      <Filter>Source Files\gpu\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="src\platform\win32\timer_impl.h">
+      <Filter>Source Files\platform\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gallium\string_hash.h">
+      <Filter>Header Files\gallium</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gallium\overloaded.h">
+      <Filter>Header Files\gallium</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

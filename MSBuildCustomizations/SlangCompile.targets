@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <PropertyPageSchema
+            Include="$(MSBuildThisFileDirectory)$(MSBuildThisFileName).xml"
+        />
+    <AvailableItemName Include="SlangCompileTask">
+      <Targets>_SlangCompileTask</Targets>
+    </AvailableItemName>
+  </ItemGroup>
+
+  <UsingTask
+        TaskName="SlangCompileTask"
+        TaskFactory="XamlTaskFactory"
+        AssemblyName="Microsoft.Build.Tasks.v4.0, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+    >
+    <Task>$(MSBuildThisFileDirectory)$(MSBuildThisFileName).xml</Task>
+  </UsingTask>
+
+  <Target
+        Name="_WriteSlangCompileTaskTlogs"
+        Condition="'@(SlangCompileTask)' != '' and '@(SelectedFiles)' == ''"
+    >
+    <ItemGroup>
+      <SlangCompileTask
+                Remove="@(SlangCompileTask)"
+                Condition="'%(SlangCompileTask.ExcludedFromBuild)' == 'true' or '%(SlangCompileTask.OutputFilename)' == ''"
+            />
+    </ItemGroup>
+    <ItemGroup>
+      <_SlangCompileTaskReadTlog
+                Include="^%(SlangCompileTask.FullPath);%(SlangCompileTask.AdditionalDependencies)"
+            />
+      <_SlangCompileTaskWriteTlog
+                Include="^%(MASM.FullPath);$([MSBuild]::NormalizePath('%(SlangCompileTask.OutputFilename)'))"
+            />
+    </ItemGroup>
+
+    <WriteLinesToFile
+            Condition="'@(_SlangCompileTaskReadTlog)' != ''"
+            File="$(TLogLocation)SlangCompileTask.read.1u.tlog"
+            Lines="@(_SlangCompileTaskReadTlog->MetaData('Identity')->ToUpperInvariant());"
+            Overwrite="true"
+            Encoding="Unicode"
+        />
+
+    <WriteLinesToFile
+            Condition="'@(_SlangCompileTaskWriteTlog)' != ''"
+            File="$(TLogLocation)SlangCompileTask.write.1u.tlog"
+            Lines="@(_SlangCompileTaskWriteTlog->MetaData('Identity')->ToUpperInvariant());"
+            Overwrite="true"
+            Encoding="Unicode"
+        />
+
+    <ItemGroup>
+      <_SlangCompileTaskReadTlog Remove="@(_SlangCompileTaskReadTlog)" />
+      <_SlangCompileTaskWriteTlog Remove="@(_SlangCompileTaskWriteTlog)" />
+    </ItemGroup>
+  </Target>
+
+  <Target
+        Name="_SlangCreateSpvDir"
+        BeforeTargets="_SlangCompileTask"
+        Condition="'@(SlangCompileTask)' != ''"
+    >
+    <MakeDir
+            Directories="$([System.IO.Path]::GetDirectoryName('%(SlangCompileTask.OutputFilename)'))"
+        />
+  </Target>
+
+  <Target
+        Name="_SlangCompileTask"
+        BeforeTargets="ClCompile"
+        Condition="'@(SlangCompileTask)' != ''"
+        Outputs="%(SlangCompileTask.OutputFilename)"
+        Inputs="%(SlangCompileTask.Identity)"
+        DependsOnTargets="_WriteSlangCompileTaskTlogs;_SelectedFiles"
+    >
+
+    <ItemGroup Condition="'@(SelectedFiles)' != ''">
+      <SlangCompileTask
+                Remove="@(SlangCompileTask)"
+                Condition="'%(Identity)' != '@(SelectedFiles)'"
+            />
+    </ItemGroup>
+
+    <Message Importance="High" Text="%(SlangCompileTask.Identity)" />
+
+    <SlangCompileTask
+            Condition="'@(SlangCompileTask)' != '' and '%(SlangCompileTask.ExcludedFromBuild)' != 'true' and '%(SlangCompileTask.EnableReflection)' == 'false'"
+            CommandLineTemplate="%(SlangCompileTask.CommandLineTemplate)"
+            EnableDebugFlag="%(SlangCompileTask.EnableDebugFlags)"
+            EnableReflection="%(SlangCompileTask.EnableReflection)"
+            SpirvProfile="%(SlangCompileTask.SpirvProfile)"
+            OutputFolder="%(SlangCompileTask.OutputFolder)"
+            OutputFilename="%(SlangCompileTask.OutputFilename)"
+            Entrypoints="%(SlangCompileTask.Entrypoints)"
+            AdditionalOptions="%(SlangCompileTask.AdditionalOptions)"
+            Inputs="%(SlangCompileTask.Identity)"
+        />
+
+    <SlangCompileTask
+            Condition="'@(SlangCompileTask)' != '' and '%(SlangCompileTask.ExcludedFromBuild)' != 'true' and '%(SlangCompileTask.EnableReflection)' == 'true'"
+            CommandLineTemplate="%(SlangCompileTask.ReflectedCommandLineTemplate)"
+            EnableDebugFlag="%(SlangCompileTask.EnableDebugFlags)"
+            EnableReflection="%(SlangCompileTask.EnableReflection)"
+            SpirvProfile="%(SlangCompileTask.SpirvProfile)"
+            OutputFolder="%(SlangCompileTask.OutputFolder)"
+            OutputFilename="%(SlangCompileTask.OutputFilename)"
+            Entrypoints="%(SlangCompileTask.Entrypoints)"
+            AdditionalOptions="%(SlangCompileTask.AdditionalOptions)"
+            Inputs="%(SlangCompileTask.Identity)"
+        />
+  </Target>
+
+</Project>
